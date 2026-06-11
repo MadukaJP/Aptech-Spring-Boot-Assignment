@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head><title>Admin Dashboard</title></head>
+<body>
+    <h1>🛡️ Admin Dashboard</h1>
+    <p>Total Students: <strong th:text="${totalStudents}"></strong></p>
+    <p>Logged in as: <strong th:text="${currentUser}"></strong></p>
+    <ul>
+        <li><a href="/students">📋 Manage Students</a></li>
+        <li><a href="/students/add">➕ Add Student</a></li>
+    </ul>
+    <form method="post" th:action="@{/logout}">
+        <button type="submit">🚪 Logout</button>
+    </form>
+</body>
+</html>

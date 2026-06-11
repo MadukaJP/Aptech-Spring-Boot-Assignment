@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Add New Student</title>
+    <style>
+        body { font-family: Arial, sans-serif; max-width: 500px; margin: 40px auto; padding: 0 20px; }
+        h1   { color: #2c3e50; }
+        .form-group { margin-bottom: 16px; }
+        label { display: block; margin-bottom: 6px; font-weight: bold; color: #555; }
+        input, select {
+            width: 100%; padding: 10px; border: 1px solid #ddd;
+            border-radius: 6px; box-sizing: border-box; font-size: 14px;
+        }
+        button {
+            background-color: #27ae60; color: white; padding: 12px 24px;
+            border: none; border-radius: 6px; cursor: pointer; font-size: 16px; width: 100%;
+        }
+        button:hover { background-color: #219a52; }
+        .back-link { display: block; margin-top: 16px; color: #666; }
+    </style>
+</head>
+<body>
+    <h1>➕ Add New Student</h1>
+
+    <form action="/students/add" method="post">
+    <!--        ↑ sends POST request to /students/add when submitted -->
+
+        <div class="form-group">
+            <label for="name">Full Name:</label>
+            <input type="text" id="name" name="name" placeholder="e.g. Alice Johnson" required>
+        </div>
+
+        <div class="form-group">
+            <label for="course">Course:</label>
+            <input type="text" id="course" name="course" placeholder="e.g. Spring MVC" required>
+        </div>
+
+        <div class="form-group">
+            <label for="email">Email Address:</label>
+            <input type="email" id="email" name="email" placeholder="e.g. alice@school.com" required>
+        </div>
+
+        <div class="form-group">
+            <label for="grade">Current Grade:</label>
+            <select id="grade" name="grade">
+                <option value="A">A — Excellent</option>
+                <option value="B">B — Good</option>
+                <option value="C">C — Average</option>
+                <option value="D">D — Below Average</option>
+                <option value="F">F — Fail</option>
+            </select>
+        </div>
+
+        <button type="submit">Add Student</button>
+    </form>
+
+    <a class="back-link" href="/students">← Back to Student List</a>
+</body>
+</html>

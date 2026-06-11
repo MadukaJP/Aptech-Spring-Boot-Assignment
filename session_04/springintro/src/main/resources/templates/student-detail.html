@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title th:text="'Student: ' + ${student.name}">Student Detail</title>
+    <style>
+        body { font-family: Arial, sans-serif; max-width: 500px; margin: 40px auto; padding: 0 20px; }
+        .card {
+            background: white; border-radius: 10px; padding: 24px;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.1);
+        }
+        .field { margin: 12px 0; display: flex; gap: 16px; }
+        .label { font-weight: bold; color: #666; min-width: 80px; }
+        .value { color: #333; }
+        .grade-badge {
+            background: #27ae60; color: white;
+            padding: 2px 10px; border-radius: 12px;
+        }
+        a { color: #2980b9; text-decoration: none; }
+    </style>
+</head>
+<body>
+    <h1>👤 Student Profile</h1>
+
+    <div class="card">
+        <div class="field">
+            <span class="label">ID:</span>
+            <span class="value" th:text="${student.id}">-</span>
+        </div>
+        <div class="field">
+            <span class="label">Name:</span>
+            <span class="value" th:text="${student.name}">-</span>
+        </div>
+        <div class="field">
+            <span class="label">Course:</span>
+            <span class="value" th:text="${student.course}">-</span>
+        </div>
+        <div class="field">
+            <span class="label">Email:</span>
+            <span class="value" th:text="${student.email}">-</span>
+        </div>
+        <div class="field">
+            <span class="label">Grade:</span>
+            <span class="value">
+                <span class="grade-badge" th:text="${student.grade}">-</span>
+            </span>
+        </div>
+    </div>
+
+    <br>
+    <a href="/students">← Back to All Students</a>
+</body>
+</html>

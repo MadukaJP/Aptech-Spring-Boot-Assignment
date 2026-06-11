@@ -1,0 +1,10 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head><title>Page Not Found</title></head>
+<body style="font-family:Arial; text-align:center; padding:60px;">
+    <h1 style="font-size:80px; color:#e53e3e;">404</h1>
+    <h2>Oops! Page Not Found</h2>
+    <p th:text="'Error: ' + ${status} + ' - ' + ${error}"></p>
+    <a href="/students" style="color:#3182ce;">← Go Back to Students</a>
+</body>
+</html>

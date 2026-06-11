@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Employees — Aptech Corp</title>
+    <style>
+        body { font-family: Arial, sans-serif; max-width: 1000px;
+               margin: 40px auto; padding: 0 20px; background: #f5f5f5; }
+        h1   { color: #2c3e50; border-bottom: 3px solid #3498db; padding-bottom: 10px; }
+        table { width: 100%; border-collapse: collapse;
+                background: white; box-shadow: 0 2px 8px rgba(0,0,0,0.1); }
+        th   { background: #2c3e50; color: white; padding: 12px 16px; text-align: left; }
+        td   { padding: 12px 16px; border-bottom: 1px solid #ecf0f1; }
+        tr:hover td { background: #f8f9fa; }
+        a    { color: #2980b9; text-decoration: none; }
+        a:hover { text-decoration: underline; }
+        .badge { background:#3498db; color:white; padding:3px 10px;
+                 border-radius:20px; font-size:13px; }
+        .btn   { background:#3498db; color:white; padding:8px 16px;
+                 border-radius:5px; text-decoration:none; display:inline-block; }
+        .btn-danger { background:#e74c3c; }
+        .btn-small { padding:4px 10px; font-size:13px; }
+    </style>
+</head>
+<body>
+
+    <nav style="margin-bottom:20px;">
+        <a href="/employees">Home</a> |
+        <a class="btn" href="/employees/add">+ Add Employee</a>
+    </nav>
+
+    <h1>
+        Employee Directory
+        <span class="badge" th:text="${totalCount} + ' employee(s)'">0 employees</span>
+    </h1>
+
+    <p th:if="${employees.isEmpty()}" style="color:#e67e22; font-style:italic;">
+        No employees registered yet.
+        <a href="/employees/add">Add the first one →</a>
+    </p>
+
+    <table th:if="${!employees.isEmpty()}">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Full Name</th>
+                <th>Email</th>
+                <th>Department</th>
+                <th>Salary</th>
+                <th>Join Date</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="emp : ${employees}">
+                <td th:text="${emp.id}">1</td>
+                <td th:text="${emp.fullName}">Name</td>
+                <td th:text="${emp.email}">email@example.com</td>
+                <td th:text="${emp.department}">HR</td>
+                <td th:text="${#numbers.formatDecimal(emp.salary, 1, 2)}">50000.00</td>
+                <td th:text="${emp.joinDate}">2024-01-01</td>
+                <td>
+                    <a class="btn btn-small" th:href="@{/employees/edit/{id}(id=${emp.id})}">Edit</a>
+                    <a class="btn btn-small btn-danger" th:href="@{/employees/delete/{id}(id=${emp.id})}"
+                       onclick="return confirm('Delete this employee?')">Delete</a>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+</body>
+</html>

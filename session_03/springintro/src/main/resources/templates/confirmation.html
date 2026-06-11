@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Student Added</title>
+    <style>
+        body { font-family: Arial, sans-serif; max-width: 500px; margin: 40px auto; text-align: center; }
+        .success-box {
+            background: #d4edda; border: 1px solid #c3e6cb;
+            border-radius: 8px; padding: 24px; margin: 20px 0;
+        }
+        h1 { color: #155724; }
+        .detail { color: #555; margin: 8px 0; }
+        a { display: inline-block; margin: 8px; padding: 10px 20px;
+            background: #27ae60; color: white; border-radius: 6px; text-decoration: none; }
+    </style>
+</head>
+<body>
+    <div class="success-box">
+        <h1>🎉 Success!</h1>
+        <p th:text="${message}">Student added.</p>
+        <p class="detail">Name: <strong th:text="${studentName}">-</strong></p>
+        <p class="detail">Course: <strong th:text="${studentCourse}">-</strong></p>
+        <p class="detail">Email: <strong th:text="${studentEmail}">-</strong></p>
+        <p class="detail">Grade: <strong th:text="${studentGrade}">-</strong></p>
+    </div>
+    <a href="/students">View All Students</a>
+    <a href="/students/add">Add Another</a>
+</body>
+</html>

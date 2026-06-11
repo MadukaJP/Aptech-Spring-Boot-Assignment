@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Login — Aptech Portal</title>
+    <style>
+        body { font-family: 'Segoe UI', Arial, sans-serif; display:flex;
+               justify-content:center; align-items:center; min-height:100vh;
+               margin:0; background: linear-gradient(135deg, #1a365d, #2b6cb0); }
+        .card { background:white; padding:40px; border-radius:16px;
+                box-shadow:0 20px 60px rgba(0,0,0,0.3); width:380px; }
+        .logo  { text-align:center; font-size:36px; margin-bottom:8px; }
+        h2     { text-align:center; color:#2d3748; margin:0 0 28px; font-size:20px; }
+        label  { display:block; font-size:13px; font-weight:600; color:#4a5568;
+                 margin-bottom:6px; }
+        input  { width:100%; padding:11px 14px; border:1.5px solid #e2e8f0;
+                 border-radius:8px; font-size:15px; box-sizing:border-box;
+                 transition:border-color .2s; }
+        input:focus { outline:none; border-color:#3182ce;
+                      box-shadow:0 0 0 3px rgba(49,130,206,.15); }
+        .form-group { margin-bottom:18px; }
+        .btn   { width:100%; padding:13px; background:#3182ce; color:white;
+                 border:none; border-radius:8px; font-size:16px; font-weight:600;
+                 cursor:pointer; transition:background .2s; }
+        .btn:hover { background:#2b6cb0; }
+        .alert { padding:11px 14px; border-radius:8px; margin-bottom:18px; font-size:14px; }
+        .alert-error   { background:#fff5f5; border:1px solid #fc8181; color:#c53030; }
+        .alert-success { background:#f0fff4; border:1px solid #68d391; color:#276749; }
+        .test-accounts { margin-top:24px; padding:14px; background:#f7fafc;
+                          border-radius:8px; font-size:12px; color:#718096; }
+        .test-accounts strong { display:block; margin-bottom:6px; color:#4a5568; }
+    </style>
+</head>
+<body>
+<div class="card">
+    <div class="logo">🎓</div>
+    <h2>Aptech Student Portal</h2>
+
+    <!-- Error message — only shows if ?error=true in URL -->
+    <div class="alert alert-error" th:if="${param.error}">
+        ❌ Incorrect username or password.
+    </div>
+
+    <!-- Logout message — only shows if ?logout=true in URL -->
+    <div class="alert alert-success" th:if="${param.logout}">
+        ✅ You have been logged out successfully.
+    </div>
+
+    <!-- CRITICAL: Use th:action="@{/login}" — NOT action="/login" -->
+    <!-- Thymeleaf automatically injects the CSRF token when you use th:action -->
+    <form method="post" th:action="@{/login}">
+        <div class="form-group">
+            <label for="username">Username</label>
+            <!-- name="username" is REQUIRED — Spring Security reads this field by name -->
+            <input type="text" id="username" name="username"
+                   placeholder="Enter your username" required autofocus>
+        </div>
+        <div class="form-group">
+            <label for="password">Password</label>
+            <!-- name="password" is REQUIRED — Spring Security reads this field by name -->
+            <input type="password" id="password" name="password"
+                   placeholder="Enter your password" required>
+        </div>
+        <!-- Optional: Remember Me -->
+        <div class="form-group" style="display:flex; align-items:center; gap:8px;">
+            <!-- name="remember-me" is the EXACT name Spring Security expects -->
+            <input type="checkbox" id="rememberMe" name="remember-me" style="width:auto;">
+            <label for="rememberMe" style="margin:0; font-weight:normal;">Remember me for 7 days</label>
+        </div>
+        <button type="submit" class="btn">Login →</button>
+    </form>
+
+    <div class="test-accounts">
+        <strong>🧪 Test Accounts:</strong>
+        alice / alice123 — STUDENT (view only)<br>
+        bob / bob456 — INSTRUCTOR (view + add + edit)<br>
+        admin / admin789 — ADMIN (full access)
+    </div>
+</div>
+</body>
+</html>
