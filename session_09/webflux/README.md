@@ -20,6 +20,10 @@ The server starts on **port 4000**.
 
 Open your browser to `http://localhost:4000/api/news/live` and watch news alerts pour in every second.
 
+## Live Demo
+
+Deployed on Railway: [https://news-spring-webflux-app-production.up.railway.app/](https://news-spring-webflux-app-production.up.railway.app/)
+
 ## Built with
 
 - Spring Boot 4.0.6
