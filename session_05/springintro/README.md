@@ -40,9 +40,9 @@ Database: `aptech_corp_db` — tables are auto-created by Hibernate (`ddl-auto=u
 ### Connection config (`application.properties`)
 
 ```
-spring.datasource.url=jdbc:postgresql://localhost:5432/spring_aptech_db
-spring.datasource.username=postgres
-spring.datasource.password=dev1234$
+spring.datasource.url=jdbc:postgresql://<host>:5432/<database>
+spring.datasource.username=<db-username>
+spring.datasource.password=<db-password>
 spring.datasource.driver-class-name=org.postgresql.Driver
 ```
 

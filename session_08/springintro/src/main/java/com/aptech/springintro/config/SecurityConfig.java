@@ -117,6 +117,9 @@ public class SecurityConfig {
                 // Rule 6: Admin area — ADMIN only
                 .requestMatchers("/admin/**").hasRole("ADMIN")
 
+                //By Pass 
+                .requestMatchers("/api/**").permitAll()
+
                 // Rule 7: Anything else not mentioned → must be logged in
                 .anyRequest().authenticated()
 

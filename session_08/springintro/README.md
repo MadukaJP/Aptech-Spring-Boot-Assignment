@@ -2,7 +2,7 @@
 
 A full-stack Spring Boot web application for managing student records with role-based security, PostgreSQL, and Docker support.
 
-**Live demo:** [https://aptech-spring-boot-assignment-production.up.railway.app/](https://aptech-spring-boot-assignment-production.up.railway.app/)
+**Live demo:** [https://student-web-portal.up.railway.app/](https://student-web-portal.up.railway.app/)
 
 ---
 
@@ -73,12 +73,12 @@ A full-stack Spring Boot web application for managing student records with role-
 ## Database
 
 The `students` table is auto-created by Hibernate (`ddl-auto=update`).  
-Connection is configured via environment variables with local defaults:
+Connection is configured via environment variables:
 
 ```properties
-spring.datasource.url=${DATABASE_URL:jdbc:postgresql://localhost:5432/spring_aptech_db}
-spring.datasource.username=${DATABASE_USERNAME:postgres}
-spring.datasource.password=${DATABASE_PASSWORD:dev1234$}
+spring.datasource.url=jdbc:postgresql://<host>:5432/<database>
+spring.datasource.username=<db-username>
+spring.datasource.password=<db-password>
 ```
 
 ---
