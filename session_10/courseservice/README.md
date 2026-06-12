@@ -19,13 +19,14 @@ A Spring Boot microservice for managing courses and verifying student enrollment
 
 All settings are in `src/main/resources/application.properties` and overridable via environment variables:
 
-| Variable            | Default                            | Description              |
-|---------------------|-------------------------------------|--------------------------|
-| `PORT`              | `5001`                              | Server port              |
-| `DATABASE_URL`      | `jdbc:mysql://<host>/<database>`    | JDBC URL                 |
-| `DATABASE_USERNAME` | `<db-username>`                     | DB username              |
-| `DATABASE_PASSWORD` | `<db-password>`                     | DB password              |
-| `STUDENT_SERVICE_URL` | `http://localhost:5000`           | Student Service base URL |
+| Variable                   | Default                            | Description                    |
+|----------------------------|-------------------------------------|--------------------------------|
+| `PORT`                     | `5001`                              | Server port                    |
+| `DATABASE_URL`             | `jdbc:mysql://<host>/<database>`    | JDBC URL                       |
+| `DATABASE_USERNAME`        | `<db-username>`                     | DB username                    |
+| `DATABASE_PASSWORD`        | `<db-password>`                     | DB password                    |
+| `STUDENT_SERVICE_URL`      | `http://localhost:5000`             | Student Service base URL       |
+| `STUDENT_SERVICE_API_KEY`  | `placeholder-api-key`               | API key for Student Service    |
 
 ## Running
 

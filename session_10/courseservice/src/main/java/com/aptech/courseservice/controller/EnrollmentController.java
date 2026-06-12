@@ -22,7 +22,9 @@ public class EnrollmentController {
             StudentDTO student = studentClient.getStudentById(studentId);
 
             return "Success! Found student: " + student.name() +
-                   " who is enrolled in " + student.course();
+                    " who is enrolled in " + student.course();
+        } catch (FeignException.Unauthorized e) {
+            return "Error: Invalid API key provided.";
         } catch (FeignException.NotFound e) {
             return "Error: No student exists with ID " + studentId + ".";
         } catch (FeignException e) {
