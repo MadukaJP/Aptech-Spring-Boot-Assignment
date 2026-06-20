@@ -17,11 +17,6 @@ public class CourseController {
     @Autowired
     private CourseRepository courseRepository;
 
-    @PostMapping("/course")
-    public Course addCourse(@RequestBody Course course) {
-        return courseRepository.save(course);
-    }
-
     @GetMapping("/course")
     public List<Course> getAllCourses() {
         return courseRepository.findAll();

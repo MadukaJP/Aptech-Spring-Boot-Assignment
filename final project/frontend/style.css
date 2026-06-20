@@ -1,0 +1,158 @@
+:root {
+    --primary-bg: #0D1B2A;
+    --card-bg: #1B263B;
+    --accent: #00E5FF;
+    --text-main: #FFFFFF;
+    --text-muted: #A0B2C6;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Inter', sans-serif;
+}
+
+body {
+    background-color: var(--primary-bg);
+    color: var(--text-main);
+    line-height: 1.6;
+}
+
+.container {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+header {
+    background: linear-gradient(90deg, #1A0B2E 0%, #1B263B 100%);
+    padding: 60px 0;
+    border-bottom: 2px solid var(--accent);
+    margin-bottom: 40px;
+}
+
+.header-content h1 {
+    font-size: 3rem;
+    font-weight: 800;
+    margin-bottom: 10px;
+}
+
+.header-content p {
+    color: var(--accent);
+    font-size: 1.2rem;
+}
+
+main h2 {
+    font-size: 2rem;
+    margin-bottom: 30px;
+}
+
+/* Grid Layout */
+.grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 25px;
+}
+
+/* Event Cards */
+.card {
+    background-color: var(--card-bg);
+    border-radius: 12px;
+    padding: 25px;
+    transition: transform 0.2s, box-shadow 0.2s;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0, 229, 255, 0.1);
+}
+
+.card h3 {
+    font-size: 1.4rem;
+    margin-bottom: 15px;
+    color: var(--accent);
+}
+
+.card p {
+    color: var(--text-muted);
+    margin-bottom: 8px;
+    display: flex;
+    align-items: center;
+}
+
+.card p strong {
+    color: var(--text-main);
+    margin-left: 5px;
+}
+
+.tickets {
+    display: inline-block;
+    background: rgba(0, 229, 255, 0.1);
+    color: var(--accent);
+    padding: 5px 12px;
+    border-radius: 20px;
+    font-weight: 600;
+    font-size: 0.9rem;
+    margin-top: 15px;
+    margin-bottom: 20px;
+}
+
+.tickets.sold-out {
+    background: rgba(255, 50, 50, 0.1);
+    color: #FF3232;
+}
+
+/* Buttons */
+button {
+    width: 100%;
+    padding: 12px;
+    background-color: var(--accent);
+    color: var(--primary-bg);
+    border: none;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+button:hover {
+    background-color: #00B8CC;
+}
+
+button:disabled {
+    background-color: #334;
+    color: #667;
+    cursor: not-allowed;
+}
+
+/* Utilities */
+.loading {
+    text-align: center;
+    color: var(--text-muted);
+    font-size: 1.2rem;
+    padding: 40px;
+    grid-column: 1 / -1;
+}
+
+#error-banner {
+    background-color: rgba(255, 50, 50, 0.1);
+    color: #FF3232;
+    padding: 15px;
+    border-radius: 8px;
+    margin-bottom: 30px;
+    border: 1px solid rgba(255, 50, 50, 0.3);
+}
+
+.hidden {
+    display: none;
+}
+
+footer {
+    text-align: center;
+    padding: 50px 0;
+    color: var(--text-muted);
+    margin-top: 50px;
+}

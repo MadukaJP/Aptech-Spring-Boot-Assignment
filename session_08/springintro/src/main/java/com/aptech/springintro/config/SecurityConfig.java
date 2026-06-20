@@ -101,8 +101,8 @@ public class SecurityConfig {
                 // Rule 1: Login page & static resources — public (no login needed)
                 .requestMatchers("/login", "/css/**", "/js/**", "/images/**").permitAll()
 
-                // Rule 2: Home page, student list — any logged-in user can view
-                .requestMatchers("/", "/students").authenticated()
+                // Rule 2: Home page, student list, courses — any logged-in user can view
+                .requestMatchers("/", "/students", "/courses", "/courses/**").authenticated()
 
                 // Rule 3: Add student — only INSTRUCTOR or ADMIN
                 .requestMatchers("/students/add").hasAnyRole("INSTRUCTOR", "ADMIN")

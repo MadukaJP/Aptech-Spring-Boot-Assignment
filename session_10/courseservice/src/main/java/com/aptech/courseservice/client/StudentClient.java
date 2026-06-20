@@ -15,7 +15,7 @@ import com.aptech.courseservice.dto.StudentDTO;
 // 2. The Feign Client Interface
 // name = A logical name for the client (used if Eureka is enabled)
 // url  = The hardcoded address of the target service (used if Eureka is NOT enabled)
-@FeignClient(name = "student-service", url = "${student.service.url}", configuration = com.aptech.courseservice.config.FeignConfig.class)
+@FeignClient(name = "student-service", url = "${student.service.url}")
 public interface StudentClient {
 
     // 3. The Mapping

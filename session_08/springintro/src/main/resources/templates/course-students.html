@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <meta charset="UTF-8">
+    <title th:text="'Enrolled Students — ' + ${course?.title} ?: 'Enrolled Students'">Enrolled Students — Aptech Portal</title>
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body {
+            font-family: 'Segoe UI', Arial, sans-serif;
+            background: #f0f2f5;
+            min-height: 100vh;
+        }
+        nav {
+            background: linear-gradient(135deg, #1a365d, #2b6cb0);
+            padding: 0 32px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 64px;
+            color: white;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+        }
+        .nav-brand { font-size: 20px; font-weight: 700; display: flex; align-items: center; gap: 10px; }
+        .nav-links { display: flex; align-items: center; gap: 8px; }
+        .nav-links a {
+            color: #e2e8f0; text-decoration: none; padding: 8px 16px;
+            border-radius: 6px; font-size: 14px; font-weight: 500;
+            transition: all 0.2s;
+        }
+        .nav-links a:hover { background: rgba(255,255,255,0.12); color: white; }
+        .nav-links a.active { background: rgba(255,255,255,0.18); color: white; }
+        .nav-right { display: flex; align-items: center; gap: 16px; }
+        .nav-right span { font-size: 14px; color: #e2e8f0; }
+        .nav-right strong { color: white; }
+        .btn-logout {
+            background: #e53e3e; color: white; border: none;
+            padding: 7px 14px; border-radius: 6px; cursor: pointer;
+            font-size: 13px; font-weight: 500; transition: background 0.2s;
+        }
+        .btn-logout:hover { background: #c53030; }
+        .container { max-width: 900px; margin: 0 auto; padding: 32px 24px; }
+        .course-header {
+            background: white; border-radius: 10px; padding: 24px;
+            box-shadow: 0 1px 4px rgba(0,0,0,0.06); margin-bottom: 24px;
+        }
+        .course-header h1 { font-size: 22px; color: #2d3748; }
+        .course-meta { display: flex; gap: 24px; margin-top: 12px; flex-wrap: wrap; }
+        .course-meta span { font-size: 14px; color: #718096; }
+        .course-meta strong { color: #4a5568; }
+        table {
+            width: 100%; border-collapse: separate; border-spacing: 0;
+            background: white; border-radius: 10px; overflow: hidden;
+            box-shadow: 0 1px 4px rgba(0,0,0,0.06);
+        }
+        thead { background: #2d3748; }
+        th {
+            color: white; padding: 14px 16px; text-align: left;
+            font-size: 13px; font-weight: 600; text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        td {
+            padding: 14px 16px; font-size: 14px; color: #4a5568;
+            border-bottom: 1px solid #edf2f7;
+        }
+        tr:last-child td { border-bottom: none; }
+        tbody tr { transition: background 0.15s; }
+        tbody tr:hover { background: #f7fafc; }
+        .student-icon { font-size: 16px; margin-right: 8px; }
+        .count-badge {
+            display: inline-block; background: #ebf8ff; color: #2b6cb0;
+            padding: 3px 12px; border-radius: 12px; font-size: 13px; font-weight: 600;
+        }
+        .empty-state { text-align: center; padding: 48px; color: #a0aec0; }
+        .empty-state h2 { font-size: 20px; margin-bottom: 8px; color: #718096; }
+        .empty-state p { font-size: 14px; }
+        .alert-error {
+            padding: 14px 18px; border-radius: 8px; margin-bottom: 20px;
+            font-size: 14px; background: #fff5f5; border: 1px solid #fc8181; color: #c53030;
+        }
+        .back-link {
+            display: inline-block; margin-top: 20px; color: #4a5568;
+            text-decoration: none; font-size: 14px;
+        }
+        .back-link:hover { color: #2b6cb0; }
+    </style>
+</head>
+<body>
+
+<nav>
+    <div class="nav-brand">🎓 Aptech Portal</div>
+    <div class="nav-links">
+        <a th:href="@{/students}">Students</a>
+        <a th:href="@{/courses}">Courses</a>
+        <a th:href="@{/admin/dashboard}"
+           sec:authorize="hasRole('ADMIN')">Admin</a>
+    </div>
+    <div class="nav-right">
+        <span>👤 <strong sec:authentication="name"></strong></span>
+        <form method="post" th:action="@{/logout}" style="margin:0;">
+            <button type="submit" class="btn-logout">Logout</button>
+        </form>
+    </div>
+</nav>
+
+<div class="container">
+
+    <div class="course-header" th:if="${course != null}">
+        <h1 th:text="${course.title}">Course Title</h1>
+        <div class="course-meta">
+            <span>Instructor: <strong th:text="${course.instructor}">—</strong></span>
+            <span>Duration: <strong th:text="${course.durationMonths + ' months'}">—</strong></span>
+            <span>Enrolled: <strong class="count-badge" th:text="${studentCount}">0</strong></span>
+        </div>
+    </div>
+
+    <div class="alert-error" th:if="${courseError}" th:text="${courseError}"></div>
+
+    <table th:if="${not #lists.isEmpty(studentNames)}">
+        <thead>
+            <tr>
+                <th>#</th>
+                <th>Student Name</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="name, iterStat : ${studentNames}">
+                <td th:text="${iterStat.count}"></td>
+                <td><span class="student-icon">👤</span><strong th:text="${name}"></strong></td>
+            </tr>
+        </tbody>
+    </table>
+
+    <div class="empty-state" th:if="${#lists.isEmpty(studentNames) and courseError == null}">
+        <h2>No students enrolled yet</h2>
+        <p>Students can enroll from the Courses page.</p>
+    </div>
+
+    <a th:href="@{/courses}" class="back-link">← Back to Courses</a>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TechMeetup | Developer Events</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+</head>
+<body>
+    
+    <header>
+        <div class="container header-content">
+            <h1>💻 TechMeetup</h1>
+            <p>Find your next developer conference.</p>
+        </div>
+    </header>
+
+    <main class="container">
+        <!-- Error messages will appear here -->
+        <div id="error-banner" class="hidden"></div>
+        
+        <h2>Upcoming Events</h2>
+        
+        <!-- The JS will inject the event cards into this grid -->
+        <div id="events-grid" class="grid">
+            <div class="loading">Loading events from server...</div>
+        </div>
+    </main>
+
+    <footer>
+        <p>Built with Vanilla JS and Spring Boot.</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
