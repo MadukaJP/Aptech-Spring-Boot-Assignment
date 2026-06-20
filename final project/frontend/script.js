@@ -4,7 +4,7 @@
 // Do NOT put a trailing slash at the end of the URL.
 // Example: const BACKEND_URL = "https://my-spring-app.up.railway.app";
 // =========================================================================
-const BACKEND_URL = "http://localhost:5000"; // Change this before deploying!
+const BACKEND_URL = "https://techmeetup-backend-production.up.railway.app"; // Change this before deploying!
 
 // DOM Elements
 const eventsGrid = document.getElementById('events-grid');
